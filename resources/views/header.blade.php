@@ -25,42 +25,32 @@
                                       <span>hoặc</span>
                                     <div class="line r"></div>
                                 </div>
-                                <div class="error"></div>
-                                    <form method="POST" enctype="multipart/form-data"  action="dangnhap">
-                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
+                                    <div class="alert alert-danger" style="display:none"></div>
+                                     <div class="alert alert-success" style="display:none"></div>
+                                    <form method="POST" enctype="multipart/form-data"  action="{{url('dangnhap')}}">
+                                        @csrf
                                 <fieldset>
                                     <input id="email" class="form-control" type="email" placeholder="Email" name="email">
                                     <input id="password" class="form-control" type="password" placeholder="Mật khẩu" name="password"><br>
-                                    <input class="btn btn-default btn-login" type="submit" value="Đăng nhập" onclick="loginAjax()"></fieldset>
+                                    <button  class="btn btn-default btn-login"  id="ajaxSubmit">Đăng nhập</button></fieldset>
                                     </form>
                                 </div>
                              </div>
                         </div>
                         <div class="box">
                             <div class="content registerBox" style="display:none;">
-                            	  <div class="error"></div>
-                                   @if(count($errors)>0)
-                            <div class="alert alert-danger">        
-                                    @foreach($errors->all() as $err)
-                                        {{$err}}<br>
-                                    @endforeach
-                            </div>
-                            @endif
-        
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">
-                                {{session('thongbao')}}
-                            </div>
-                        @endif
+                            	 
                              <div class="form">
-                                <form method="POST" enctype="multipart/form-data" data-remote="true" action="dangky">
-                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
+                                <div class="alert alert-danger" style="display:none"></div>
+                                     <div class="alert alert-success" style="display:none"></div>
+                                <form method="POST" enctype="multipart/form-data"  action="{{url('dangky')}}">
+                                      @csrf
                                 <fieldset>
                                 <input id="username" class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
-                                <input id="password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
-                                <input id="password_confirmation" class="form-control" type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation">
-                                <input id="email" class="form-control" type="email" placeholder="Email" name="email"><br>
-                                <input class="btn btn-default btn-register" type="submit" value="Tạo tài khoản" name="commit"></fieldset>
+                                <input id="passwordReg" class="form-control" type="password" placeholder="Mật khẩu" name="passwordReg">
+                                <input id="passwordReg_confirmation" class="form-control" type="password" placeholder="Nhập lại mật khẩu" name="passwordReg_confirmation">
+                                <input id="emailReg" class="form-control" type="email" placeholder="Email" name="emailReg"><br>
+                                <button  class="btn btn-default btn-login"  id="ajaxSubmitReg">Đăng ký</button></fieldset>
                                 </form>
                                 </div>
                             </div>
@@ -80,7 +70,7 @@
     		      </div>
 		      </div>
 		  </div>
-                        	<!--END Modal -->
+                	<!--END Modal -->
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -95,37 +85,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul style="float: right; margin-right: 30px">
                         <!-- Authentication Links -->
-                    <!--     @guest -->
+               
 
                             <li class="nav-item">
                                 <button class="btn btn-primary btn-rounded" href="#"data-toggle="modal" data-target="#loginModal"><img src="images/login.png">Đăng nhập</button>
                             </li>
 
-                          <!--   @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"><img src="images/sign-up.png">{{ __('Đăng kí') }}</a>
-                                </li>
-                            @endif -->
-                    <!--     @else -->
-                           <!--  <li class="has-dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><img src="images/logout.png">
-                                        {{ __('Đăng xuất') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li> -->
-
-              <!--           @endguest -->
                     </ul>
                 </div>
             </div><br>

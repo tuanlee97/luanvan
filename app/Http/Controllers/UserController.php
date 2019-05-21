@@ -8,76 +8,65 @@ use App\User;
 class UserController extends Controller
 {	
     public function postRegister(Request $request){
-    
-// $validator = Validator::make($request->all(), [
-//             'username' => 'required',
-//             'password' => 'required',
-//             'password_confirmation' => 'required',
-//             'email' => 'required',
-//         ]);
-        
-//         if ($validator->fails())
-//         {
-//             return response()->json(['errors'=>$validator->errors()->all()]);
-//         }
-//    $khachhang = new User;
-//    $khachhang->name = $request->username;
-//    $khachhang->email = $request->email;
-//    $khachhang->password = bcrypt($request->password);
-//    $khachhang->save();
-   
-//         return response()->json(['success'=>'Data is successfully added']);
-   $this->validate($request,
-     [
+       $validator = \Validator::make($request->all(), [
        'username' => 'required|min:5',
-       'email'=>'required|email|unique:users,email',
-       'password'=>'required|min:6|max:20',
-       'password_confirmation'=>'required|same:password',
-       
+       'emailReg'=>'required|email|unique:users,email',
+       'passwordReg'=>'required|min:6|max:20',
+       'passwordReg_confirmation'=>'required|same:passwordReg',
      ],
-     [
+      [
        'username.required'=>'Bạn chưa nhập tên',
        'username.min'=>'Tên người dùng phải có ít nhất 5 kí tự',
-       'email.required'=>'Bạn chưa nhập email',
-       'email.unique'=>'Email đã tồn tại',
-       'password.required'=>'Bạn chưa nhập mật khẩu',
-       'password.min'=>'Mật khẩu phải có ít nhất 6 kí tự',
-       'password.max'=>'Mật khẩu phải chỉ tối đa 20 kí tự',
-       'password_confirmation.same'=>'Mật khẩu không trùng khớp',
-      
-     ]);
+       'emailReg.required'=>'Bạn chưa nhập email',
+       'emailReg.unique'=>'Email đã tồn tại',
+       'emailReg.email' => 'Email không đúng định dạng',
+       'passwordReg.required'=>'Bạn chưa nhập mật khẩu',
+       'passwordReg.min'=>'Mật khẩu phải có ít nhất 6 kí tự',
+       'passwordReg.max'=>'Mật khẩu phải chỉ tối đa 20 kí tự',
+       'passwordReg_confirmation.required'=>'Vui lòng nhập lại mật khẩu',
+       'passwordReg_confirmation.same'=>'Mật khẩu không trùng khớp',
 
-   $khachhang = new User;
-   $khachhang->name = $request->username;
-   $khachhang->email = $request->email;
-   $khachhang->password = bcrypt($request->password);
-   $khachhang->save();
+        ]);
+        
+        if ($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
+          }
+        else{
+               $khachhang = new User;
+               $khachhang->name = $request->username;
+               $khachhang->email = $request->emailReg;
+               $khachhang->password = bcrypt($request->passwordReg);
+               $khachhang->save();
+               return response()->json(['success'=>'Data is successfully added']);
+          }
+    }  
+    
 
-   return redirect()->back()->with('thongbao','Đăng ký thành công');
- }
- public function postlogin(Request $request)
-{
-  $this->validate($request,
-    [
-      'email'=>'required',
-      'password'=>'required|min:6|max:20',
-    ],
-
-    [
+ public function postlogin(Request $request){
+  $validator = \Validator::make($request->all(), [
+           'email'=>'required|email',
+       'password'=>'required|min:6|max:20',
+     ],
+       [
       'email.required'=>'Bạn chưa nhập Email',
+      'email.email' => 'Email không đúng định dạng',
       'password.required'=>'Bạn chưa nhập mật khẩu',
       'password.min'=>'Mật khẩu không được nhỏ hơn 6 kí tự',
       'password.max'=>'Mật khẩu không được lớn hơn 20 kí tự'
 
-    ]);
-  $login=['email'=>$request->email,'password'=>$request->password];
-  if(Auth::attempt($login))
-  {
-    return redirect('/')->with('thongbao','Đăng nhập thành công');
+        ]);
+        
+        if ($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
+          }
+        else{
+              $login=['email'=>$request->email,'password'=>$request->password];
+                if(Auth::attempt($login))            
+                  return response()->json(['success'=>'Đăng nhập thành công']);
+                else{
+                  $errors = 'Email hoặc mật khẩu không đúng';
+                  return response()->json(['errorLogin'=>$errors]);
+          }
+    }  
   }
-  else
-  {
-    return redirect('/')->with('thongbao','Đăng nhập thất bại');
-  }
-}
 }
