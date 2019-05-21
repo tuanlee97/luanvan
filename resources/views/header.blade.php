@@ -86,11 +86,11 @@
                     <ul style="float: right; margin-right: 30px">
                         <!-- Authentication Links -->
                
-
+                             @guest
                             <li class="nav-item">
                                 <button class="btn btn-primary btn-rounded" href="#"data-toggle="modal" data-target="#loginModal"><img src="images/login.png">Đăng nhập</button>
                             </li>
-
+                             @endguest
                     </ul>
                 </div>
             </div><br>
