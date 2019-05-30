@@ -26,109 +26,22 @@
 					<div class="col-md-9">
 						<div class="row">
 							<div class="wrap-division">
+								@foreach($tour as $chuongtrinh)
 								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-1.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
+									<div class="tour" >
+										<a href="{{route('chitiettour',$chuongtrinh->matour)}}" class="tour-img" style="background-image: url(images/{{$chuongtrinh->hinhanh}});">
+											<p class="price"><span>{{$chuongtrinh->songay}} Ngày</span> / {{$chuongtrinh->sodem}} Đêm</small></p>
 										</a>
 										<span class="desc">
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
+											<h2><a href="{{route('chitiettour',$chuongtrinh->matour)}}">{{$chuongtrinh->tentour}}</a></h2>
+											<span class="city">Xuất phát: {{$chuongtrinh->diemxuatphat}}</span>
+											<p>Tóm tắt : {{$chuongtrinh->noidung}}</p>
 										</span>
 									</div>
 								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-2.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-3.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-4.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-5.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-6.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-7.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="tour">
-										<a href="chitiet_tour" class="tour-img" style="background-image: url(images/tour-8.jpg);">
-											<p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-										</a>
-										<span class="desc">
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<h2><a href="chitiet_tour">Family Tour in Greece</a></h2>
-											<span class="city">Athens, Greece</span>
-										</span>
-									</div>
-								</div>
+								@endforeach
+								
 							</div>
 						</div>
 						<div class="row">

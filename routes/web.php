@@ -40,9 +40,9 @@ Route::get('about',[
 'as'=>'about',
 'uses'=>'PageController@getabout'
 ]);
-Route::get('chitiet_tour',[
-'as'=>'chitiet_tour',
-'uses'=>'PageController@getchitiet_tour'
+Route::get('chitiettour/{id}',[
+'as'=>'chitiettour',
+'uses'=>'PageController@getchitiettour'
 ]);
 Route::get('hotel-room',[
 'as'=>'hotel-room',
@@ -68,5 +68,56 @@ Route::post('dangnhap',
     ]
 );
 Auth::routes();
+
+Route::get('admin/dangxuat','UserController@getlogoutAdmin');
+
+    Route::group(['prefix'=>'admin'],function(){
+        Route::get('dangnhap','AdminController@getloginAdmin');
+        Route::post('dangnhap','AdminController@postloginAdmin');
+    });
+//,'middleware'=>'adminLogin'
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('trangchu','AdminController@gettrangchu');
+    Route::group(['prefix'=>'tour'],function(){
+      
+        Route::get('danhsach','TourController@getDanhSach');
+
+        Route::get('them','TourController@getThem');
+
+        Route::get('sua/{id}','TourController@getSua');
+
+        Route::post('them','TourController@XuLyThem');
+
+        Route::post('sua/{id}','TourController@XuLySua');
+
+        Route::get('xoa/{id}','TourController@XuLyXoa');
+    });
+ Route::group(['prefix'=>'livetable'],function(){
+      
+Route::get('/', 'LiveTable@index');
+Route::get('fetch_data', 'LiveTable@fetch_data');
+Route::post('add_data', 'LiveTable@add_data')->name('livetable.add_data');
+Route::post('update_data', 'LiveTable@update_data')->name('livetable.update_data');
+Route::post('delete_data', 'LiveTable@delete_data')->name('livetable.delete_data');
+   });
+
+ Route::group(['prefix'=>'quocgia'],function(){
+      
+         Route::get('/','QuocgiaController@getDanhSach');
+
+
+ Route::post('them', 'QuocgiaController@Them')->name('them');
+
+         Route::get('sua/{id}','QuocgiaController@getSua');
+
+         
+         Route::post('sua/{id}','QuocgiaController@XuLySua');
+
+         Route::get('xoa/{id}','QuocgiaController@XuLyXoa');
+     });
+
+
+});
+
 
 
